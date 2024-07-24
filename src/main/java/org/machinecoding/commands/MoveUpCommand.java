@@ -1,53 +1,73 @@
 package org.machinecoding.commands;
 
+import org.machinecoding.exceptions.InvalidMove;
 import org.machinecoding.models.Cell;
 import org.machinecoding.models.CellState;
 import org.machinecoding.models.Game;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MoveUpCommand implements MoveCommand {
     Game game;
     int points;
-    Stack<Integer> st;
+    boolean boardChanged;
 
     public MoveUpCommand(Game game) {
         this.game = game;
         this.points = 0;
-        this.st = new Stack<>();
-        execute();
+        boardChanged = false;
     }
 
     @Override
-    public void execute() {
-        for(int col = 0; col < 4; col++) {
-            for(int row = 0; row < 4; row++) {
-                Cell cell = game.getBoard().getGrid().get(row).get(col);
-                if(cell.getCellState() == CellState.FILLED) {
-                    int cellValue = cell.getValue();
-                    if(!st.empty() && st.peek() == cellValue) {
-                        int score = 2 * cellValue;
-                        points += score;
-                        st.pop();
-                        st.push(score);
-                    }
-                    else {
-                        st.push(cellValue);
-                    }
-                }
-            }
-            int size = st.size();
-            for(int row = 3; row >= size; row--) {
-                game.getBoard().getGrid().get(row).get(col).setCellState(CellState.EMPTY);
-            }
-            for(int row = size - 1; row >= 0; row--) {
-                game.getBoard().getGrid().get(row).get(col).setCellState(CellState.FILLED);
-                game.getBoard().getGrid().get(row).get(col).setValue(st.peek());
-                st.pop();
-            }
-            st.clear();
-        }
+    public void execute() throws InvalidMove {
+        compress();
+        merge();
+        if(boardChanged)
+            compress();
+        else
+            throw new InvalidMove();
         if(points > 0)
             game.notifyObserver(points);
     }
+
+    @Override
+    public void merge() {
+        List<List<Cell>> grid = game.getBoard().getGrid();
+        for(int j = 0; j < 4; j++) {
+            for(int i = 0; i < 3; i++) {
+                int value = grid.get(i).get(j).getValue();
+                if (grid.get(i).get(j).getCellState() != CellState.EMPTY &&
+                        grid.get(i + 1).get(j).getValue() == value) {
+                    grid.get(i).get(j).setValue(value * 2);
+                    points += value * 2;
+                    grid.get(i + 1).get(j).setValue(0);
+                    grid.get(i + 1).get(j).setCellState(CellState.EMPTY);
+                    boardChanged = true;
+                }
+            }
+        }
+    }
+
+    @Override
+    public void compress() {
+        List<List<Cell>> grid = game.getBoard().getGrid();
+        List<List<Cell>> newGrid = new ArrayList<>();
+        initializeGrid(newGrid);
+        for(int j = 0; j < 4; j++) {
+            int pos = 0;
+            for(int i = 0; i < 4; i++) {
+                if(grid.get(i).get(j).getCellState() != CellState.EMPTY) {
+                    int value = grid.get(i).get(j).getValue();
+                    newGrid.get(pos).get(j).setValue(value);
+                    newGrid.get(pos).get(j).setCellState(CellState.FILLED);
+                    if(pos != i)
+                        boardChanged = true;
+                    pos++;
+                }
+            }
+        }
+        game.getBoard().setGrid(newGrid);
+    }
+
 }

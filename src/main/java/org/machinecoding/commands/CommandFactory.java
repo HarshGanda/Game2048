@@ -4,12 +4,13 @@ import org.machinecoding.models.Direction;
 import org.machinecoding.models.Game;
 
 public class CommandFactory {
-    public static void moveCommand(Game game, Direction direction) {
+    public static MoveCommand moveCommand(Game game, Direction direction) {
+        MoveCommand moveCommand;
         switch (direction) {
-            case LEFT  : { new MoveLeftCommand(game); return; }
-            case RIGHT : { new MoveRightCommand(game); return; }
-            case UP    : { new MoveUpCommand(game); return; }
-            case DOWN  : { new MoveDownCommand(game); return; }
+            case LEFT  : {  moveCommand = new MoveLeftCommand(game); return moveCommand; }
+            case RIGHT : {  moveCommand = new MoveRightCommand(game); return moveCommand; }
+            case UP    : {  moveCommand = new MoveUpCommand(game); return moveCommand; }
+            case DOWN  : {  moveCommand = new MoveDownCommand(game); return moveCommand; }
             default : throw new IllegalArgumentException("Invalid Direction");
         }
     }

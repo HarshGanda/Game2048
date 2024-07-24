@@ -1,6 +1,9 @@
 package org.machinecoding.controllers;
 
 import org.machinecoding.commands.CommandFactory;
+import org.machinecoding.commands.MoveCommand;
+import org.machinecoding.exceptions.InvalidInputException;
+import org.machinecoding.exceptions.InvalidMove;
 import org.machinecoding.models.*;
 
 public class GameController {
@@ -26,12 +29,23 @@ public class GameController {
     // 3. Display the Board
     // 4. Update the Game Status
     public void move(Game game, String dir) {
-        Direction direction = getDirection(dir);
-        CommandFactory.moveCommand(game, direction);
-        if(game.getGameStatus() == GameStatus.IN_PROGRESS) {
-            game.addRandomTile();
+        try {
+            Direction direction = getDirection(dir);
+            MoveCommand moveCommand = CommandFactory.moveCommand(game, direction);
+            moveCommand.execute();
+            if (getGameStatus(game) == GameStatus.IN_PROGRESS) {
+                game.addRandomTile();
+                game.updateGameStatus();
+            }
+        }
+        catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+        }
+        catch (InvalidMove move) {
+            System.out.println(move.getMessage());
+        }
+        finally {
             game.displayBoard();
-            game.updateGameStatus();
         }
     }
 
@@ -40,13 +54,13 @@ public class GameController {
     }
 
     // Get valid Direction from the user input
-    private Direction getDirection(String dir) {
+    private Direction getDirection(String dir) throws InvalidInputException {
         return switch (dir) {
             case "LEFT" -> Direction.LEFT;
             case "RIGHT" -> Direction.RIGHT;
             case "UP" -> Direction.UP;
             case "DOWN" -> Direction.DOWN;
-            default -> throw new IllegalArgumentException("Invalid Input");
+            default -> throw new InvalidInputException("Invalid Input: " + dir);
         };
     }
 }
