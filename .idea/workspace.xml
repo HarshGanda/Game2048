@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a3b5d14-1479-4b8f-94f6-5e19e20c74c2" name="Changes" comment="Game 2048">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/exceptions/InvalidInputException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/exceptions/InvalidMove.java" afterDir="false" />
+    <list default="true" id="3a3b5d14-1479-4b8f-94f6-5e19e20c74c2" name="Changes" comment="Game 2048 - move and game over logic updated">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/ClassDiagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Game.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveDownCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveDownCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveLeftCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveLeftCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveRightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveRightCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveUpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/commands/MoveUpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/machinecoding/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/controllers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/machinecoding/models/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/models/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/machinecoding/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/machinecoding/models/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +32,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -53,6 +48,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -104,7 +100,8 @@
       <updated>1721310780452</updated>
       <workItem from="1721310781638" duration="115000" />
       <workItem from="1721313447977" duration="21002000" />
-      <workItem from="1721761933277" duration="17676000" />
+      <workItem from="1721761933277" duration="17870000" />
+      <workItem from="1721858858638" duration="5351000" />
     </task>
     <task id="LOCAL-00001" summary="Game 2048">
       <option name="closed" value="true" />
@@ -122,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721674197592</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Game 2048 - move and game over logic updated">
+      <option name="closed" value="true" />
+      <created>1721858774099</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721858774099</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,7 +145,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Game 2048" />
-    <option name="LAST_COMMIT_MESSAGE" value="Game 2048" />
+    <MESSAGE value="Game 2048 - move and game over logic updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game 2048 - move and game over logic updated" />
   </component>
 </project>
